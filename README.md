@@ -1,4 +1,4 @@
-# AlgorithmsLua
+# AlgorithmsLua [![Build Status](https://travis-ci.org/seregatte/AlgorithmsLua.svg?branch=master)](https://travis-ci.org/seregatte/AlgorithmsLua)
 
 Some Algorithms written in Lua for language studies (PR are welcome)
 
@@ -26,6 +26,11 @@ Inside a root directory run that command:
 
 ```shell
 $ busted -p 'test.lua' algorithms/
+```
+or
+
+```shell
+$ make
 ```
 
 License

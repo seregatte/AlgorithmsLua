@@ -1,0 +1,24 @@
+language: bash
+
+os:
+- linux
+
+env:
+  - LUAVER=
+  - LUAVER=5.1
+  - LUAVER=5.2
+
+services:
+  - docker
+
+script:
+- |
+  if [[ "$TRAVIS_OS_NAME" == 'linux' && -n "$LUAVER" ]]; then
+    printf "FROM seregatte/lua:${LUAVER}\nWORKDIR /code\nRUN apk add --update make\nRUN luarocks install busted\nENTRYPOINT []\nCMD [\"make\"]" > Dockerfile
+    docker build --tag tester:${LUAVER}-alpine .
+    docker run -it -v `pwd`:/code tester:${LUAVER}-alpine
+  fi
+
+notifications:
+  email:
+    on_success: never
